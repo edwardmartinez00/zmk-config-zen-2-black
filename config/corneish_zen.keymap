@@ -11,6 +11,43 @@
 };
 
 / {
+    macros {
+        filename: filename {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp F2 &kp LC(A) &kp LC(C) &kp ESC>;
+            label = "FILENAME";
+        };
+
+        custom_prnt: custom_prnt {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LG(LS(S))>;
+            label = "CUSTOM_PRNT";
+        };
+
+        copy_filepath: copy_filepath {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LS(LC(C))>;
+            label = "COPY_FILEPATH";
+        };
+
+        section: section {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LALT>,
+                <&macro_tap>,
+                <&kp KP_N0 &kp KP_N1 &kp KP_N6 &kp KP_N7>,
+                <&macro_release>,
+                <&kp LEFT_ALT>;
+
+            label = "SECTION";
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -26,13 +63,13 @@
             bindings = <
 &kp TAB        &kp Q       &kp W        &kp F        &kp P            &kp B        &kp J     &kp L       &kp U        &kp Y        &kp SEMI    &kp BSPC
 &kp BACKSPACE  &mt LALT A  &mt LCTRL R  &mt LSHFT S  &mt LWIN T       &kp G        &kp M     &mt RWIN N  &mt RSHFT E  &mt RCTRL I  &mt RALT O  &kp SQT
-&kp DEL        &kp Z       &kp X        &kp C        &kp D            &kp V        &kp K     &kp H       &kp COMMA    &kp DOT      &kp FSLH    &kp ESC
+&kp DEL        &kp Z       &kp X        &kp C        &kp D            &kp V        &kp K     &kp H       &kp COMMA    &kp DOT      &kp FSLH    &to 3
                                         &trans       &mt ENTER SPACE  &sk LSHFT    &sk LALT  &sl 1       &sk RCTRL
             >;
         };
 
-        lower_layer {
-            display-name = "NUMBER";
+        symbol_1 {
+            display-name = "SYMBOL";
 
             // -----------------------------------------------------------------------------------------
             // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BSPC |
@@ -41,15 +78,15 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&kp TAB     &kp N1        &kp N2        &kp N3        &kp N4        &kp N5          &kp N6    &kp N7    &kp N8    &kp N9     &kp N0  &kp BSPC
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT  &trans  &studio_unlock
-&kp LSHFT   &trans        &trans        &trans        &trans        &trans          &trans    &trans    &trans    &trans     &trans  &trans
-                                        &kp LGUI      &trans        &kp SPACE       &kp RET   &trans    &kp RALT
+&kp ESC  &kp EXCLAMATION  &kp AT_SIGN  &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp PIPE     &kp EQUAL  &kp PLUS            &kp MINUS       &kp ASTERISK   &kp SLASH     &trans
+&trans   &kp HASH         &kp DOLLAR   &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp TILDE    &none      &mt HOME BACKSLASH  &kp UNDERSCORE  &kp AMPERSAND  &mt END PIPE  &kp RETURN
+&trans   &kp PERCENT      &kp CARET    &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp GRAVE    &section   &none               &trans          &trans         &trans        &trans
+                                       &to 0                 &trans                 &trans       &trans     &to 2               &trans
             >;
         };
 
-        raise_layer {
-            display-name = "SYMBOL";
+        number_2 {
+            display-name = "NUMBER";
 
             // -----------------------------------------------------------------------------------------
             // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
@@ -58,40 +95,31 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&kp TAB    &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR  &kp BSPC
-&kp LCTRL  &trans    &trans  &trans    &trans    &trans       &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT  &kp BSLH  &kp GRAVE
-&kp LSHFT  &trans    &trans  &trans    &trans    &trans       &kp UNDER  &kp PLUS   &kp LBRC   &kp RBRC  &kp PIPE  &kp TILDE
-                             &kp LGUI  &trans    &kp SPACE    &kp RET    &trans     &kp RALT
+&kp ESCAPE  &kp F1  &kp F2   &kp F3   &kp F4   &kp PRCNT    &kp KP_MULTIPLY  &kp KP_N7        &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp KP_MINUS  &trans
+&trans      &kp F5  &kp F6   &kp F7   &kp F8   &trans       &kp KP_DIVIDE    &kp KP_NUMBER_4  &kp KP_N5        &kp KP_N6        &kp KP_PLUS   &trans
+&to 4       &kp F9  &kp F10  &kp F11  &kp F12  &trans       &kp KP_DOT       &kp KP_N1        &kp KP_N2        &kp KP_N3        &kp KP_ENTER  &trans
+                             &to 0    &trans   &trans       &trans           &to 3            &trans
             >;
         };
 
-        layer_3 {
+        navigate_3 {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-                        &trans  &trans  &trans    &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans        &trans            &trans  &trans             &trans    &trans  &trans               &trans
+&trans  &trans  &trans  &trans  &custom_prnt  &filename         &trans  &mt LC(LEFT) LEFT  &kp DOWN  &kp UP  &mt RC(RIGHT) RIGHT  &trans
+&trans  &trans  &trans  &trans  &trans        &copy_filepath    &trans  &trans             &trans    &trans  &trans               &trans
+                        &to 0   &trans        &trans            &trans  &trans             &trans
             >;
 
-            label = "MACROS";
+            label = "NAVIGATE";
         };
 
-        layer_4 {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-                        &trans  &trans  &trans    &trans  &trans  &trans
-            >;
-        };
-
-        layer_5 {
+        keyboard_4 {
             display-name = "BLUETOOTH";
             bindings = <
-&kp TAB     &kp N1        &kp N2        &kp N3        &kp N4        &kp N5          &kp N6    &kp N7    &kp N8    &kp N9     &kp N0  &kp BSPC
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT  &trans  &studio_unlock
-&kp LSHFT   &trans        &trans        &trans        &trans        &trans          &trans    &trans    &trans    &trans     &trans  &trans
-                                        &kp LGUI      &trans        &kp SPACE       &kp RET   &trans    &kp RALT
+&trans      &trans        &trans        &trans        &trans        &studio_unlock    &sys_reset   &trans  &trans  &trans  &trans  &trans
+&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4      &trans       &trans  &trans  &trans  &trans  &trans
+&trans      &trans        &trans        &trans        &trans        &trans            &trans       &trans  &trans  &trans  &trans  &trans
+                                        &to 0         &trans        &bootloader       &bootloader  &trans  &trans
             >;
         };
     };
