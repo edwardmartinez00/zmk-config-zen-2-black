@@ -61,10 +61,10 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-&kp TAB        &kp Q       &kp W        &kp F        &kp P       &kp B        &kp J     &kp L            &kp U        &kp Y        &kp SEMI    &kp BSPC
-&kp BACKSPACE  &mt LALT A  &mt LCTRL R  &mt LSHFT S  &mt LWIN T  &kp G        &kp M     &mt RWIN N       &mt RSHFT E  &mt RCTRL I  &mt RALT O  &kp SQT
-&kp DEL        &kp Z       &kp X        &kp C        &kp D       &kp V        &kp K     &kp H            &kp COMMA    &kp DOT      &kp FSLH    &to 3
-                                        &trans       &sl 1       &sk LSHFT    &sk LALT  &mt ENTER SPACE  &sk RCTRL
+&kp TAB        &kp Q       &kp W        &kp F        &kp P           &kp B        &kp J     &kp L            &kp U        &kp Y        &kp SEMI    &kp BSPC
+&kp BACKSPACE  &mt LALT A  &mt LCTRL R  &mt LSHFT S  &mt LWIN T      &kp G        &kp M     &mt RWIN N       &mt RSHFT E  &mt RCTRL I  &mt RALT O  &kp SQT
+&kp DEL        &kp Z       &kp X        &kp C        &kp D           &kp V        &kp K     &kp H            &kp COMMA    &kp DOT      &kp FSLH    &to 3
+                                        &trans       &mt ENTER SPACE &sk LSHFT &sk LALT &sl 1  &sk RCTRL
             >;
         };
 
@@ -81,7 +81,7 @@
 &kp ESC  &kp EXCLAMATION  &kp AT_SIGN  &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp PIPE     &kp EQUAL  &kp PLUS            &kp MINUS       &kp ASTERISK   &kp SLASH     &caps_word
 &trans   &kp HASH         &kp DOLLAR   &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp TILDE    &none      &mt HOME BACKSLASH  &kp UNDERSCORE  &kp AMPERSAND  &mt END PIPE  &kp RETURN
 &trans   &kp PERCENT      &kp CARET    &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp GRAVE    &section   &none               &trans          &trans         &trans        &trans
-                                       &to 0                 &to 2                  &trans       &trans     &trans              &trans
+                                       &to 0                 &trans                 &trans       &trans     &to 2               &trans
             >;
         };
 
@@ -97,7 +97,7 @@
             bindings = <
 &kp ESCAPE  &kp F1  &kp F2   &kp F3   &kp F4   &kp PRCNT    &kp KP_MULTIPLY  &kp KP_N7        &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp KP_MINUS  &kp LOCKING_NUM
 &trans      &kp F5  &kp F6   &kp F7   &kp F8   &trans       &kp KP_DIVIDE    &kp KP_NUMBER_4  &kp KP_N5        &kp KP_N6        &kp KP_PLUS   &trans
-&to 4       &kp F9  &kp F10  &kp F11  &kp F12  &trans       &kp KP_DOT       &kp KP_N1        &kp KP_N2        &kp KP_N3        &kp KP_ENTER  &trans
+&to 4       &kp F9  &kp F10  &kp F11  &kp F12  &trans       &mt KP_DOT KP_N0 &kp KP_N1        &kp KP_N2        &kp KP_N3        &kp KP_ENTER  &trans
                              &to 0    &trans   &trans       &trans           &trans           &trans
             >;
         };
